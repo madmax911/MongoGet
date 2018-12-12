@@ -1,0 +1,35 @@
+<!doctype html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title> Test </title>                    <style type="text/css">
+/*------------------------------------------------------------*/
+
+            /* Reset */ * { margin: 4px; padding: 4px } 
+
+/*---------------------------------------*/</style></head><body>
+
+<input id="CollName" type="text" value="companies" /> <br><br>
+
+<button type="button" onclick="GetColl()"> Get Coll </button>
+<br>
+<div id="Output"></div>
+
+<!--=================================================--><script>
+
+function GetColl()
+{
+  var XHR = new XMLHttpRequest();
+
+  XHR.onload = function()
+  {
+    console.log(JSON.stringify(XHR.response, null, 2));
+    Output.innerHTML   += '<pre>'
+                        + JSON.stringify(XHR.response, null, 2);
+                        + '</pre>';
+  }
+
+  XHR.open('GET', 'http://localhost:8888/' + CollName.value);
+  XHR.responseType = 'json';
+  XHR.send();
+}
+
+/*-------------------------------------*/</script></body></html>
